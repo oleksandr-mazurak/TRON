@@ -1,8 +1,6 @@
 package com.tron.service;
-
 import com.tron.domain.User;
 import com.tron.domain.security.UserRole;
-
 import java.util.List;
 import java.util.Set;
 
