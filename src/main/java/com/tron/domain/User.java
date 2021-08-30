@@ -1,25 +1,43 @@
 package com.tron.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.List;
 
-public class User
-{
+//Base information about User
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //Nullable - this field can't be nullable, Updatable -can't be updatable
+    @Column(name = "userId", nullable = false, updatable = false)
     private Long userId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     private String phone;
 
     private boolean enabled=true;
 
+    //Here I have connections with all accounts
+    @OneToOne
     private PrimaryAccount primaryAccount;
 
+    @OneToOne
     private SavingsAccount savingsAccount;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Appointment> appointmentList;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Recipient> recipientList;
 
     public Long getUserId() {
