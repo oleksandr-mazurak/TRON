@@ -1,6 +1,6 @@
 package com.tron.service.UserServiceImpl;
 
-import com.tron.Dao.UserDao;
+import com.tron.dao.UserDao;
 import com.tron.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
